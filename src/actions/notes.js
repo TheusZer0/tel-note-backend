@@ -41,7 +41,7 @@ exports.updateNote = (noteId, noteData) => {
     for (let i = 0; i < notes.length; i++) {
         if (notes[i].id == noteId){
             notes[i].data = noteData
-            console.log(notes[i])
+            //console.log(notes[i])
         }
     }
 }
