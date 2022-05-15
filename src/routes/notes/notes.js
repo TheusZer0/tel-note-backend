@@ -1,7 +1,5 @@
 import notesActions from '../../actions/notes'
 
-//const response = require('koa/lib/response')
-
 exports.getAllNotes = (ctx) => {
     ctx.body = notesActions.getAllNotes()
     return ctx
@@ -27,7 +25,7 @@ exports.postNotes = (ctx) => {
 }
 
 exports.updateNote = (ctx) => {
-    notesActions.updateNote(ctx.request.id, ctx.request.body)
+    notesActions.updateNote(ctx.params.id, ctx.request.body)
     ctx.body = { message: 'Note updated successfully' }
     return ctx
 }
