@@ -4,6 +4,8 @@ import Notes from '../data/notes'
 // Se crean los usuarios
 const notes = Notes.getNotes()
 
+//let notes = []
+
 exports.getAllNotes = () => {
     return notes
 }
@@ -17,9 +19,10 @@ exports.getNote = (noteId) => {
 
 exports.postNotes = (noteData) => {
     const note = {
+        id: notes.length + 1,
         data: noteData.data
     }
-    console.log(noteData)
+    console.log(note.data)
     notes.push(note)
 }
 
