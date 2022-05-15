@@ -4,38 +4,35 @@ import Notes from '../data/notes'
 // Se crean los usuarios
 const notes = Notes.getNotes()
 
-//acciones de un CRUD
-
-//Mostrar todas las Notas
-exports.getAllNotes = () =>{
-    const note = []
-    notes.forEach((element)=> {
-        var obj = new Object();
-        obj.id = element.id
-        obj.noteTitle = element.title
-        obj.noteDescription = element.description
-        note.push(obj)
-    })
-    return note
+exports.getAllNotes = () => {
+    return notes
 }
 
-//Crear una Nota no estoy seguro si esta bien
-exports.postNotes = (ctx) =>{
-    const note = []
-    let id = null
-    notes.forEach((element)=> {
-        id = element.id
-        var obj = new Object();
-        obj.id = element.id
-        obj.noteTitle = element.title
-        obj.noteDescription = element.description
-        note.push(obj)
+exports.getNote = (noteId) => {
+    let note = notes.filter((note) => {
+        return note.id === noteId
     })
-    if (id!=null){
-        const id = ctx.request.id
-        const title = ctx.request.title
-        const description = ctx.request.description
+    return note[0]
+}
+
+exports.postNotes = (noteData) => {
+    const note = {
+        data: noteData.data
     }
-    return note
+    console.log(noteData)
+    notes.push(note)
 }
 
+exports.removeNote = (noteId) => {
+    notes = notes.filter((note) => {
+        return note.id !== noteId
+    })
+}
+
+exports.updateNote = (noteId, noteData) => {
+    for (let i = 0; i < notes.length; i++) {
+        if (notes[i].id == noteId){
+            notes[i].data == noteData
+        }
+    }
+}

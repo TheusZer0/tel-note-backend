@@ -11,7 +11,6 @@ exports.getNotes = () => {
 function getFakeNotes (id) {
     return {
         id,
-        title: faker.random.words(3),
-        description: faker.random.words(15),
+        data: faker.random.words(15),
     }
 }
