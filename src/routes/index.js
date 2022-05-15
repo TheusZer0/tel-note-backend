@@ -1,7 +1,6 @@
 import Router from 'koa-router'
 import getHealth from './health/health'
-const notes = require('./Notes/index')
-
+import notes from './../routes/notes/notes'
 
 const router = new Router()
 
@@ -11,15 +10,15 @@ router.get('/health', getHealth)
 router.get('/get-all-notes', notes.getAllNotes)
 
 //Muestra las Notas segun un ID
-//router.get('/get-note', allNotas)
+router.get('/get-note/:id', notes.getNote)
 
 //Creacion de una nueva Nota
 router.post('/create-note', notes.postNotes)
 
-//Editar una nota ya creada
-//router.post('/edit-note', userToken.getToken)
-
 //Eliminar una nota ya creada
-//router.get('/delete-note', allNotas)
+router.delete('/delete/:id', notes.removeNote)
+
+//Editar una nota ya creada
+router.post('/edit-note/:id', notes.updateNote)
 
 export default router
