@@ -9,8 +9,8 @@ exports.getAllNotes = () => {
 }
 
 exports.getNote = (noteId) => {
-    let note = notes.filter((note) => {
-        return note.id !== noteId
+    let note = notes.filter((not) => {
+        return not.id == noteId
     })
     return note[0]
 }
