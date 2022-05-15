@@ -2,9 +2,7 @@
 import Notes from '../data/notes'
 
 // Se crean los usuarios
-const notes = Notes.getNotes()
-
-//let notes = []
+let notes = Notes.getNotes()
 
 exports.getAllNotes = () => {
     return notes
@@ -12,7 +10,7 @@ exports.getAllNotes = () => {
 
 exports.getNote = (noteId) => {
     let note = notes.filter((note) => {
-        return note.id === noteId
+        return note.id !== noteId
     })
     return note[0]
 }
@@ -22,20 +20,28 @@ exports.postNotes = (noteData) => {
         id: notes.length + 1,
         data: noteData.data
     }
-    console.log(note.data)
     notes.push(note)
 }
 
 exports.removeNote = (noteId) => {
-    notes = notes.filter((note) => {
-        return note.id !== noteId
-    })
+    let b = 0
+    for (let i = 0; i < notes.length; i++) {
+        if (notes[i].id == noteId){
+            b = i;
+            notes.splice(i, 1)
+        }
+    }
+    for (let k = b; k < notes.length; k++) {
+        notes[k].id = notes[k].id - 1;        
+    }
 }
 
 exports.updateNote = (noteId, noteData) => {
+    console.log(noteId, ", ", noteData)
     for (let i = 0; i < notes.length; i++) {
         if (notes[i].id == noteId){
-            notes[i].data == noteData
+            notes[i].data = noteData
+            console.log(notes[i])
         }
     }
 }
