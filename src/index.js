@@ -2,12 +2,15 @@ import koa from 'koa'
 import bodyParser from 'koa-body'
 import router from './routes/index'
 
+const cors = require('koa2-cors')
+
 const app = new koa()
-const port = 3000
+const port = 8080
+app.use(cors())
 
 app.use(bodyParser({ multipart: true, urlencoded: true }))
 app.use(router.routes())
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })

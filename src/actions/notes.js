@@ -1,7 +1,7 @@
 //primero se importa las notas
 import Notes from '../data/notes'
 
-// Se crean los usuarios
+// Se crean las notas
 let notes = Notes.getNotes()
 
 exports.getAllNotes = () => {
@@ -9,8 +9,8 @@ exports.getAllNotes = () => {
 }
 
 exports.getNote = (noteId) => {
-    let note = notes.filter((note) => {
-        return note.id !== noteId
+    let note = notes.filter((not) => {
+        return not.id === noteId
     })
     return note[0]
 }
